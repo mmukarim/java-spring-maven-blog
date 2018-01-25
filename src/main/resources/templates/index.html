@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layout :: site-head">
+		<title>Welcome to Blu Blog by Bluwebz</title>
+	</head>
+
+	<body>
+		<header th:replace="layout :: site-header" />
+		<aside>
+			<h2>Recent Posts</h2>
+			<a href="#" th:each="p : ${latest5Posts}" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.id})}">Work Begins on HTML5.1</a>
+		</aside>
+		<main id="posts">
+			<article th:each="p : ${latest3Posts}">
+				<h2 class="title"><a href="#" th:text="${p.title}" th:href="@{/posts/view/{id}/(id=${p.id})}">Post Title</a></h2>
+				<div class="date">
+					<i>Posted on</i>
+					<span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}">23-DEC-2017</span>
+					<span th:if="${p.author}" th:remove="tag">
+					<i>by</i>
+					<span th:text="${null != p.author.fullName ?
+						p.author.fullName : p.author.username}">Minhaz Ul Karim</span>
+					</span>
+				</div>
+				<p class="content" th:utext="${p.body}">Post Content</p>
+			</article>
+		</main>
+		<footer th:replace="layout :: site-footer" />
+	</body>
+</html>

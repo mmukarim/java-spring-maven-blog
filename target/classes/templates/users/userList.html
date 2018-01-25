@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="layout :: site-head">
+		<title>Welcome to Blu Blog by Bluwebz</title>
+	</head>
+
+	<body>
+		<header th:replace="layout :: site-header" />
+		<main id="posts">
+			<table border="1" style="width:300px">
+				<tr>
+					<td><h3>Full Name</h3></td>
+					<td><h3>Username</h3></td>
+				</tr>
+				<tr th:each="u : ${allUsers}">
+					<td th:text="${u.fullName}">Full Name</td>
+					<td th:text="${u.username}">Username</td>
+				</tr>
+			</table>
+		</main>
+		<footer th:replace="layout :: site-footer" />
+	</body>
+</html>
